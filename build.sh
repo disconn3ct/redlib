@@ -11,10 +11,13 @@ else
   exit 1
 fi
 
-if [ -r .env ]; then
-  set -a
-  . "./.env"
-  set +a
-fi
+#<<<<<<< HEAD
+#if [ -r .env ]; then
+#  set -a
+#  . "./.env"
+#  set +a
+#fi
 
-$docker build -t "${REGISTRY}/redlib:${1:-latest}" .
+#$docker build -t "${REGISTRY}/redlib:${1:-latest}" .
+
+$docker build --build-arg=GIT_HASH="$(git rev-parse HEAD)" "$@" .
